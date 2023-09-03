@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+    {% for data in datas %}
+        <a href="{% url 'database_detail' database.id %}">Name: {{data.name }} <br></a>
+    {% endfor %}
+{% endblock %}
+</body>
+</html>

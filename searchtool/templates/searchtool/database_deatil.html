@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+        <h2> {{ database.keyword }}<span class="glyphicon glyphicon-erase"></span></h2>
+        <p>Description: {{database.description }}</p>
+        <p>Probing questions: {{ database.prob_ques }}</p>
+        <h4>Search in view: {{ database.view_search }}</h4>
+
+        Tags:
+        {% if database.tags.all.0 %}
+            {% for tag in database.tags.all %}
+                <div class="btn btn-primary">{{tag.tag_title}}</div>
+            {% endfor %}
+        {% else %}<span style="color: red">This keyword has no tags</span>
+        {% endif %}
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+
+            {% if user.is_admin %}<button name="edit">Amend data</button><button name="delete">Delete data</button>{% endif %}
+        </form>
+    {% endblock %}
+</body>
+</html>
